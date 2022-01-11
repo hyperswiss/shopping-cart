@@ -1,0 +1,71 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+07:00";
+
+create TABLE 'orders' (
+    'id' INT(11) NOT NULL,
+    'name' VARCHAR(250) NOT NULL,
+    'datecreation' DATE NOT NULL,
+    'status' TINYINT(1) NOT NULL,
+    'username' VARCHAR(250) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--------------------------------------
+
+CREATE TABLE 'ordersdetail' (
+    'productid' INT(111) NOT NULL,
+    'ordersid' INT(1111) NOT NULL,
+    'price' DECIMAL(10,0) NOT NULL,
+    'quantity' INT(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-----------------------------------------
+
+create TABLE 'products' (
+    'id' INT(111) NOT NULL,
+    'name' VARCHAR(250) NOT NULL,
+    'price' DECIMAL(10,0) NOT NULL,
+    'quantity' INT(11) NOT NULL,
+    'description' TEXT COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+------------------------------------------------
+
+INSERT INTO 'products' ('id', 'name', 'price', 'quantity', 'description') VALUES
+(1, 'Name1', '1000', 2, 'good'),
+(2, 'Name2', '2000', 3, 'good'),
+(3, 'Name3', '3000', 4, 'good'),
+(4, 'Name4', '4000', 5, 'good');
+
+--
+-- Indexes for table order
+--
+ALTER TABLE 'orders'
+    ADD PRIMARY KEY ('id');
+
+--
+-- Indexes for table orderdetail
+--
+
+ALTER TABLE 'ordersdetail'
+    ADD PRIMARY KEY ('orderid', 'productid');
+
+
+--
+-- Indexes for table orders
+--
+
+ALTER TABLE 'products'
+    ADD PRIMARY KEY ('id');
+
+--
+--AUTO INCREMENT for table 'orders'
+--
+
+ALTER TABLE 'orders'
+    MODIFY 'id' int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO INCREMENT FOR table 'product'
+--
+ALTER TABLE 'products'
+    MODIFY 'id' int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
